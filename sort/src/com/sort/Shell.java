@@ -25,4 +25,24 @@ public class Shell {
 			System.out.println(data[i]+ " ");
 		}
 	}
+	public static void sortOther(int[] data){
+		int h = 1;
+		while (h <= data.length / 3) {
+			h = h * 3 + 1;
+		}
+		while (h>0) {
+			for(int i=h;i<data.length;i+=h){
+				if(data[i]<data[i-1]){
+					int temp = data[i];
+					int j = i - h;
+					while(j > 0 && data[j]>temp){
+						data[j + h] = data[j];
+						j -= h;
+					}
+					data[j + h] = temp;
+				}
+			}
+			h = (h - 1) / 3;
+		}
+	}
 }
