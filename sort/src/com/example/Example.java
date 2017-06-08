@@ -29,5 +29,26 @@ public class Example {
 		}
 		return true;
 	}
-	
+	public static void merge(Comparable[] a, int lo,int mid,int hi){
+		//将a[lo...mid]和[mid+1...hi]合并
+		Comparable[] aux = null;
+		int i = lo;
+		int j= mid + 1;
+		for(int k = lo; k <= hi; k++){
+			aux[k] = a[k];     //将a复制到aux
+		}
+		for(int k = lo; k<= hi; k++){
+			if(j > mid)	//左半边用尽，取右边元素
+				a[k] = aux[j++];
+			else if(j > hi)//右半边用尽，取左边元素
+				a[k] = aux[i++];
+			else if (less(aux[j], aux[i]))//右半边的当前元素小于左半边的当前元素，取右边元素
+				a[k] = aux[j++];
+			else {
+				a[k] = aux[i++];
+			}
+				
+			
+		}
+	}
 }
