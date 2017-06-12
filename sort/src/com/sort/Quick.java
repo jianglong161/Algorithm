@@ -31,7 +31,7 @@ public class Quick {
 			}
 		}
 		if(start > lo)
-			sort(array, lo, start - 1);
+			sort(array, lo, start - 1);	
 		if(end < hi)
 			sort(array, end + 1, hi);
 		
