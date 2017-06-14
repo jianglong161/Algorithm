@@ -1,0 +1,68 @@
+查找
+1.符号表
+	符号表最主要的目的就是将一个键和一个值联系起来
+	是一种存储键值对的数据结构，支持两种操作：
+		插入(pull)
+		查找(get)
+	1.1.API
+		public class ST <key,value>
+			ST()   创建一个符号表
+			void put(Key key, Value value)
+			value get(Key key)
+			void deleted(Key key)
+			boolean isEmpty()
+			int size()
+			Iterable<key> keys()	表中所有键的集合
+		1.1.1.泛型
+			对于符号表，明确的指出查找时键和值的类型来区分它们不同的角色
+		1.1.2.重复的键
+			每个键只对应一个值
+			键冲突的时候，用 新键代替旧键
+		1.1.3.空键
+			不能为空
+		1.1.4.空值
+			不允许有空值
+				可以用get()是否返回空来测试给定的键知存在符号表中
+				可以用空值作为put()的第二个参数，用来删除
+		1.1.5.删除
+			延时删除：将键值对应的值为空 ，然后在某个时候删去所有值为空的键
+			即时删除：立即从表中删除指定的键
+		1.1.6.便捷方法
+			void deleted(Key key)
+				put(key,null)
+			boolean contains(key)
+				return get(key)!=null
+			boolean isEmpty()
+				return size ==0
+		1.1.7.迭代
+			implements Interable<key>
+				强制所有的实现必须包换iterator(),来返回一个实现hasNext()和next()迭代器
+		1.1.8.键的等价表	
+			要确定一个键是否在符号表中，要确定对象等价概念
+	1.2.有序符号表
+		键都是Comparable对象，因此可以使用a.compareTo(b)来比较a和b两个键
+		许多符号表的实现都利用了Comaprable接口带来的键的有序性更好的实现put()和get()
+		符号表都会保持键的有序并大大扩展了它的API
+		一种有序泛型符号表的API
+			public class ST <Key extends Comparable<key>,Value>
+				ST()
+				void put(Key key, Value value)
+				value get(Key key)
+				void deleted(Key key)
+				boolean isEmpty()
+				boolean contains(Key key)
+				int size()
+				Iterable<key> keys()	表中所有键的集合
+				Key min()
+				Key max()
+				Key floor(Key key)  小于等于最大键
+				Key ceiling(Key key) 小于等于key的最小键
+				int rank(Key key)   小于key的键的数量
+				Key select(int k)   排名为k的键
+			
+			public class ST <Key extends Comparable<key>,Value>
+				void deleteMin()
+				void deleteMax()
+				int size(Key lo, Key hi)
+				Iterable<Key> keys(Key lo,Key hi) 已排序
+				Iterbale<Key> keys() 表中所有键的集合
