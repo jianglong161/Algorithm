@@ -1,0 +1,25 @@
+算法基础
+递归
+	编写递归最重要要有3点
+		递归总有一个最简单的情况--方法的第一条语句总是一个包含return条件语句
+		递归调用总是尝试一个规模更小的子问题，这样递归才能收敛到最简单的情况
+		递归调用的父问题和尝试解决的子问题之间不应该有交际
+	public static int rank(int key, int[] a){
+		return rank(key, a, 0, a.length-1);
+	}
+	public static int rank(int key, int[] a, int lo, int hi){
+		if(lo > hi)
+			return -1;
+		int mid = (lo + hi) / 2;
+		if(key < a[mid])
+			return rank(key, a , lo, mid - 1);
+		else if(key > a[mid])
+			return rank(key, a, mid+1, hi);
+		else{
+			retrun mid;
+		}
+	}
+命令和参数
+	javac .java文件名    编译java程序
+	java  .class文件名不需要扩展名和命令行参数     运行java程序
+	more   任意文件名   打印文件内容
