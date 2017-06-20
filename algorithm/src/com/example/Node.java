@@ -1,5 +1,9 @@
 package com.example;
-
+/**
+ * Á´±í
+ * @author Still2Almost
+ *
+ */
 public class Node {
 	int value;
 	Node next;
