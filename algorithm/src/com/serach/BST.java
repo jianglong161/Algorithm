@@ -1,6 +1,9 @@
 package com.serach;
+
+import javax.naming.InitialContext;
+
 /**
- * 基于二叉查处树的符号表
+ * x`
  * @author Still2Almost
  *
  */
@@ -73,6 +76,34 @@ public class BST <Key extends Comparable<Key> ,Value>{
 		}
 		x.N = size(x.left) + size(x.right) + 1;
 		return x;
+	}
+	public Key min(){
+		return min(root).key;
+	}
+	private Node min(Node x){
+		if(x.left == null)
+			return x;
+		return min(x.left);
+	}
+	public Key floor(Key key){
+		Node x = floor(root, key);
+		if(x == null)
+			return null;
+		return x.key;
+	}
+	private Node floor(Node x, Key key){
+		if(x == null)
+			return null;
+		int com = key.compareTo(x.key);
+		if(com < 0)
+			return floor(x.left, key);
+		else if(com == 0)
+			return x;
+		Node t = floor(x.right, key);
+		if(t != null)
+			return t;
+		else
+			return x;
 	}
 
 }
