@@ -1,6 +1,8 @@
 package com.serach;
 
-import javax.naming.InitialContext;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 /**
  * x`
@@ -85,6 +87,15 @@ public class BST <Key extends Comparable<Key> ,Value>{
 			return x;
 		return min(x.left);
 	}
+	public Key max(){
+		return max(root).key;
+	}
+	private Node max(Node x){
+		if(x.right == null)
+			return x;
+		return max(x.right);
+	}
+	
 	public Key floor(Key key){
 		Node x = floor(root, key);
 		if(x == null)
@@ -188,5 +199,25 @@ public class BST <Key extends Comparable<Key> ,Value>{
 		x.N = size(x.left) + size(x.right) +1;
 		return x;
 		
+	}
+	public Iterable<Key> keys(){
+		return keys(min(),max());
+	}
+	public Iterable<Key> keys(Key lo, Key hi){
+		Queue<Key> queue = new LinkedList<Key>();
+		keys(root, queue, lo, hi);
+		return queue;
+	}
+	public void keys(Node x, Queue<Key> queue, Key lo ,Key hi){
+		if(x == null)
+			return;
+		int comlo = lo.compareTo(x.key);
+		int comhi = hi.compareTo(x.key);
+		if(comlo < 0)
+			keys(x.left,queue,lo,hi);
+		if(comlo <= 0 && comhi >= 0)
+			//queue.enqueue(x.key);
+		if(comhi > 0)
+			keys(x.right, queue, lo, hi);
 	}
 }
