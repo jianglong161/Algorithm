@@ -105,5 +105,88 @@ public class BST <Key extends Comparable<Key> ,Value>{
 		else
 			return x;
 	}
-
+	public Key select(int k){
+		return select(root,k).key;
+	}
+	private Node select(Node x, int k){
+		//返回排名为k的结点
+		if(x == null){
+			return null;
+		}
+		int t = size(x.left);
+		if(t > k){
+			return select(x.left, k);
+		}else if(t < k){
+			return select(x.right, k-t-1);
+		}else {
+			return x;
+		}
+	}
+	public int rank(Key key){
+		return rank(key,root);
+	}
+	private int rank(Key key, Node x){
+		if(x == null)
+			return 0;
+		int cmp = key.compareTo(x.key);
+		if(cmp < 0)
+			return rank(key,x.left);
+		else if(cmp > 0){
+			return 1+size(x.left)+rank(key,x.right);
+		
+		}
+		else {
+			return size(x.left);
+		}
+	}
+	public void deleMin(){
+		root = deleMin(root);
+	}
+	private Node deleMin(Node x){
+		if(x.left == null)
+			return x.right;
+		x.left = deleMin(x.left);
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+	}
+	public void delete(Key key){
+		root = delete(root,key);
+	}
+	/**
+	 * 
+	 * @param x
+	 * @param key
+	 * @return
+	 */
+	private Node delete(Node x, Key key){
+		if (x == null) {
+			return null;
+		}
+		/**
+		 *  将指向即将被删除的结点的连接保存为t；
+			将x指向它的后继结点min(t.right);
+			将x的右链接（原本指向一颗所有结点都大于x.key的二叉查找树）指向deleteMin（t.right）
+		   	也就是删除后所有的结点仍然都大于x.key的子二叉查找树；
+			将x的左连接（本为空）设为t.left（其下所有的键都小于被删除的结点和它的后继结点）
+		 */
+		int cmp = key.compareTo(x.key);
+		if(cmp < 0)
+			x.left =delete(x.left, key);
+		else if(cmp > 0)
+			x.right = delete(x.right, key);
+		else {
+			if(x.left == null){
+				return x.left;
+			} 
+			if(x.right == null)
+				return x.right;
+			Node t = x;
+			x = min(t.right);
+			x.right = deleMin(t.right);
+			x.left = t.left;
+		}
+		x.N = size(x.left) + size(x.right) +1;
+		return x;
+		
+	}
 }
