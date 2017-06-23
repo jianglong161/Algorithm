@@ -7,12 +7,12 @@ package com.serach;
 public class BinarySearchST <Key extends Comparable<Key>, Value>{
 	private Key[] keys;
 	private Value[] values;
-	private int N;
+	private static int N;
 	public BinarySearchST(int capacity) {
 		keys = (Key[]) new Comparable[capacity];
 		values = (Value[]) new Comparable[capacity];
 	}
-	public int size(){
+	public static int size(){
 		return N;
 	}
 	public Value get(Key key){

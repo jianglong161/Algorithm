@@ -1,4 +1,7 @@
 package com.example;
+
+import com.serach.BinarySearchST;
+
 /**
  * ºìºÚÊ÷µÄ¶¨Òå
  * @author Still2Almost
@@ -23,4 +26,5 @@ public class Noe_RedBlackTree <Key extends Comparable<Key>, Value>{
 			return false;
 		return x.color = RED;
 	}
+	
 }
