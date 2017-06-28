@@ -21,7 +21,17 @@ public class LinearProbingHashST<Key,Value>{
 	/**
 	 * À©´ó±¶Êý
 	 */
-	private void resize(int M){}
+	private void resize(int cap){
+		LinearProbingHashST<Key, Value> t;
+		t = new LinearProbingHashST<Key,Value>();
+		for(int i = 0; i< M;i++){
+			if(keys[i] != null)
+				t.put(keys[i], values[i]);
+		}
+		keys = t.keys;
+		values = t.values;
+		M =t.M;
+	}
 	public void put(Key key, Value value){
 		if(N >= M/2)
 			resize(2 * M);
