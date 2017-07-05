@@ -1,4 +1,4 @@
-package com.graph;
+package com.digraph;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
