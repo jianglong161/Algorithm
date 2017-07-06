@@ -215,3 +215,14 @@
 				DirectedCycle(Digraph G)	寻找有向环的构造函数
 				boolean hasCycle()	G是否含有有向环
 				Iterable<Integer> cycle()	有向环中的所有顶点（如果存在）
+		2.4.3.顶点的深度优先次序与拓铺排序
+			public class Topologcial
+				Topologcial()	拓铺排序的构造函数
+				bollean isDAG()	G是有向无环图么？
+				Iterable<Integer> ordec	拓铺排序的所有顶点\
+			当且仅当一副有向图是无环图时它才能进行拓扑排序
+			3中排泄顺序：
+				前序：在递归调用之前将顶点加入队列
+				后序：在递归调用之后将顶点加入队列
+				逆后续：在递归调用之后，将顶点压入栈
+			一副有向五环图的拓扑排序即为所有顶点的逆后续排列。
