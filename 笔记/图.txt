@@ -246,4 +246,66 @@
 		只考虑连通图
 		边的权重不一定表示距离
 		边的权重可能是0或者负数
-		所有边的权重各不相同
+		所有边的权重各不相同	
+	3.1.原理
+		树的最重要的两个性质：
+			用一条边连接树中的任意两个顶点都会产生一个新的环
+			从树中删去一条边将会得到两颗独立的树
+		3.1.1.切分定理
+			将会把加权图中的所有顶点分为两个集合，检查横跨两个集合的所有的边并识别那条边属于图的最小生成树
+			在一副加权图中，给定任意切分，它的横切边中的权重最小者必然属于图的最小生成树
+		3.1.2.贪心算法
+			贪心算法的一种特殊情况：
+				使用切分定理找到最小生成树的一条边，不断重复直到最小生成树的所有边
+	3.2.加权无向图的数据类型：
+		在邻接矩阵表示中，可以用边的权重代替布尔值作为矩阵的元素；
+		在邻接表表示中，可以用链表的结点中增加一个权重域
+		加权边：
+		public class Edge implements Comparable<Edge>{
+			Edge(int v,int w,double weight)
+			double weight()	边的权重
+			int eight() 边的两顶点之一
+			int other(int v)  另一个顶点
+			int compareTo(Edge that) 将这条边与that比较
+			Stirng toString()
+		}
+		加权无向图：
+		public class EdgeWeightdGraph
+			EdgeWeightdGraph(int v)	创造一副含有v个顶点的空图
+			EdgeWeightdGraph(int in)从输入流中读取图
+			int V() 图的顶点数
+			int E() 图的边数
+			void addEdge(Edge e) 向图中添加一条边e
+			Iterable<Edge> adj(int v) 	和v相关联的所有的边
+			Iterable<Edge> edges()｛	图的所有边
+				Bag<Edge> e = new Bag<Edge>();
+				for(int v=0;v<V;v++)
+					for(Edge e: adj[v])
+						if(e.other(v) > v)
+							b.add(e)
+				return b;
+			｝
+		3.2.1.用权重来比较边
+			一副加权无向图中的边的自然次序就是按权重排序
+		3.2.2.平行边
+		3.2.3.自环
+			允许自环，
+			对最小生成树算法没有影响
+			最小生成树肯定不会含有自环
+	3.3.最小生成树的API和测试用例
+		按照惯例，在API中会定义一个接受加权无向图为参数构造函数并且支持能够用例返回图的最小生成树以及其加权的方法
+		由于图G的最小生成树是G的一幅子图并且同时是一颗树，最重要有几种方法表示：
+			一组边的列表
+			一副加权无向图
+			一个以顶点为索引含有父结点连接的数组
+		public class MST
+			MST(EdgeWeightdGraph G)
+			Iterable<Edge> edges()
+			double weight()
+	3.4.Prim算法
+		计算生成最小生成树的方法叫做Prim算法：
+			每一步都会为一颗生长中的树添加一条边。
+			一开始这棵树只有一个顶点
+			然后会向他添加一条V-1的边
+			每次总是将下一条连接树中的顶点与不在树中的顶点且权重最小的边加入树中
+			即由树中的顶点所定义的切分中的一条横切边。
