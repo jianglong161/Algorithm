@@ -11,6 +11,16 @@ public class In {
 		return false;
 	}
 
+	public Integer readInt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double readDouble() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	public String readLine() {
 		// TODO Auto-generated method stub
 		return null;
