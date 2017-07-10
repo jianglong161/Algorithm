@@ -6,7 +6,7 @@ import com.graph.Edge;
 import com.graph.EdgeWeightedGraph;
 
 /**
- * 最小生成树的prim算法的延迟实现
+ * 最小生成树的prim算法的即时实现
  * @author Still2Almost
  *
  */
