@@ -1,0 +1,79 @@
+1.抽象数据类型
+	ADT,是带有一组操作的一些对象的集合
+2.表ADT
+	表中第一个元素是A0,而最后一个元素是Ai-1
+	元素Ai在表中的位置为i+1
+	2.1.表的简单数组实现。
+		扩大数组
+		int[] arr = new int[10]
+		int[] newArr = new int[arr.length * 2];
+		for(int i =0 ;i < arr.lengt; i++){
+			newArr[i] = arr[i];
+		}
+		arr = newArr;
+		插入等操作最坏的情况为O(N)
+		如果所有的操作都发生在表的高端，那就没有元素需要移动，而添加和删除只需划分O(1)时间。
+	2.2.简单链表
+		链表是由一系列结点组成
+		每个节点均含有表元素和到包含该元素后继远的节点的链link.成为next链，最后一个单元的next链的引用null
+		remove方法可以通过修改一个next引用来实现。
+		insert()需要使用new操作符从系统取得一个新节点，此后执行两次引用的调整
+		在表的前端添加项或删除第一想的特殊情形此时也属于常数时间的操作
+		删除最后一项比较复杂，因为必须找出指向最后节点的项，把它next链成null，然后再更新持有最后节点的链
+		让每个结点都持有一个指向它在表中的前驱节点的链，称为双链表
+3.Java Collections API
+	3.2.Iterator
+		实现Literable接口的集合必须提供一个称为iterator()
+			public static <AnyType> void print(Collection<AnyType> coll){
+				Iterator it = coll.iterator();
+				while(it.hasnext()){
+					AnyType item itr.next();
+					System.out.println(item);
+				}
+			}
+		remove()主要优点：
+			Collection的remove()必须首先找出要被删除的项。
+			如果知道所要被删除的项的准确位置，那么删除它的开销很可能要小的多
+		当直接使用Iterator时，重要的是要记住一个基本法则：
+			如果对正在被迭代的结合进行结构上的改变，那么迭代器便不再合法
+			使用迭代器的remove()
+	3.3.List接口和ArrayList类和linked类
+		get()和set()使得使用户可以访问或者改变由位置索引idx给定的表中指定位置上的项。
+		add()使得在位置idex处置入一个新的项并把其后的项向后推移一个位置。
+		LinkedList类提供了ListADT的双链表实现。
+	3.5.关于ListIterator接口
+		对于LinkedList来说，add是一种常数时间的操作
+4.ArrayLIst的实现
+	MyArrayList
+	1.MyArrayList将保持基本数组，数组的容量，以及存储在MyArrayList中当前的数。
+	2.MyArrayList将提供一种机制以改变基础数组的容量。通过获得一个新数组，将老数组拷贝到新数组再来改变数组的容量，允许虚拟机回收老数组
+	3.MyArrayList将提供get和set
+	4.MyArrayList将提供基本的例，如size isEmpty clear 还提供remove
+	5.MyArrayList将提供一个实现Iterator接口的类
+	4.1.基本类
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
