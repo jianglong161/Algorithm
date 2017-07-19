@@ -2,8 +2,10 @@ package com.ADT;
 
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.omg.CORBA.Any;
+import org.omg.CORBA.Current;
 import org.omg.CosNaming.NamingContextExtPackage.AddressHelper;
 import org.omg.IOP.TAG_JAVA_CODEBASE;
 
@@ -64,10 +66,36 @@ public class MyArrayList<AnyType> implements Iterable<AnyType> {
 		theSize ++;
 		
 	}
+	public AnyType remove(int idx){
+		AnyType removeItem = theItems[idx];
+		for(int i = idx; i < size() - 1; i ++){
+			theItems[i] = theItems[i + 1];
+		}
+		theSize --;
+		return removeItem;
+	}
 	@Override
 	public Iterator<AnyType> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Iterator<AnyType>) new ArrayListIterator();
 	}
-
+	private class ArrayListIterator implements Iterable<AnyType>{
+		private int current = 0;
+		public boolean hasNext(){
+			return current < size();
+		}
+		public AnyType next(){
+			if(!hasNext())
+				throw new NoSuchElementException();
+			return theItems[current ++];
+		}
+		public void remove(){
+			MyArrayList.this.remove(current -- );
+		}
+		@Override
+		public Iterator<AnyType> iterator() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 }
